@@ -1,0 +1,36 @@
+/**
+ * Repository validation & impact analysis marker file.
+ *
+ * This file is used by the automation planner/executor to confirm the repository
+ * root is accessible and to capture a lightweight index of existing framework
+ * patterns (fixtures, base classes, and test locations) before generating code.
+ */
+
+export const REPO_VALIDATION = {
+  /**
+   * Indicates the repository root was accessible at generation time.
+   */
+  repoAccessible: true,
+
+  /**
+   * High-level inventory of relevant framework files discovered.
+   */
+  inventory: {
+    playwrightConfig: 'playwright.config.ts',
+    basePage: 'src/pages/base.page.ts',
+    fixtures: 'test-setup/fixtures.ts',
+    testBase: 'test-base/test-base.ts',
+    existingPagesDir: 'src/pages',
+    existingTestsFound: false,
+  },
+
+  /**
+   * Notes about patterns discovered during indexing.
+   */
+  notes: [
+    'Framework appears to be Playwright + TypeScript.',
+    'BasePage provides logger + AllureReporter and a protected logStep(message) helper.',
+    'Custom fixtures exist in test-setup/fixtures.ts exporting { test, expect }.',
+    'No *.spec.ts or *.test.ts files were found at repository scan time; tests may be generated under a different convention/directory.',
+  ],
+} as const;
